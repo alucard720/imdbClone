@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./app/pages/HomeScreen";
 import MovieScreen from "./app/pages/MovieScreen";
-import AppLoading from "expo-app-loading";
+import ButtonTab from "./app/components/ButtonTab";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +21,9 @@ export default function App() {
           component={MovieScreen}
           options={{ headerShown: false }}
         />
+  
       </Stack.Navigator>
+     
     </NavigationContainer>
   );
 }

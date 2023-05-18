@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     alignContent: "space-between",
     elevation: 3,
     marginVertical: 2,
-    width: setWidth(3),
+    width: setWidth(25),
   },
   genreTxt: {
     fontSize: 13,

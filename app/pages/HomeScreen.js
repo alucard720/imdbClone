@@ -4,7 +4,6 @@ import { StatusBar } from "expo-status-bar";
 import Colors from "../../constants/Colors";
 import GenreCard from "../components/GenreCard";
 import ItemSeparator from "../components/ItemSeparator";
-import MovieScreen from "./MovieScreen";
 import MovieCard from "../components/MovieCard";
 
 const Genres = ["All", "Action", "Comedy", "Romance", "Horror", "Sci-Fi"];
@@ -44,6 +43,8 @@ const HomeScreen = () => {
         ></FlatList>
       </View>
 
+     
+
       <View>
         <FlatList
           data={Genres}
@@ -56,9 +57,17 @@ const HomeScreen = () => {
           renderItem={({ item }) => <MovieCard />}
         />
       </View>
+
+      
     </ScrollView>
   );
 };
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -70,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 35,
   },
   headerTitle: {
     color: "black",
