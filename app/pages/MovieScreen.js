@@ -1,20 +1,22 @@
-import React from 'react'
-import {  StyleSheet, Text, View, StatusBar } from 'react-native'
+import React from "react";
+import { StyleSheet, Text, View, StatusBar, ScrollView } from "react-native";
 
+const movies = ["recent movies"];
 
 const MovieScreen = () => {
   return (
-    <View style={styles.container}>
-    <StatusBar style="auto"/>
-    <Text>Home Screen</Text>
-    </View>
-  )
-}
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.container}>
+        <Text>Movie</Text>
+      </View>
+    </ScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-    },
-})
+  container: {
+    flex: 1,
+  },
+});
 
-export default MovieScreen
+export default MovieScreen;

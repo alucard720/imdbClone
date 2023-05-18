@@ -1,7 +1,7 @@
 export default{
 
-    BASIC_BACKGROUND: "#F5F7FA",
-    ACTIVE: "#057DFE",
+  BASIC_BACKGROUND: "#F5F7FA",
+  ACTIVE: "#057DFE",
   HEART: "#F13939",
   WHITE: "#FFFFFF",
   YELLOW: "#FFC107",
