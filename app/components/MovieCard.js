@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from "react-native";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import IMAGES from "../constants/Images";
@@ -8,8 +15,8 @@ const MovieCard = () => {
   return (
     <TouchableOpacity>
       <View style={styles.container}>
-        <View>
-          <Image source={IMAGES.IMDB} resizeMode="cover" />
+        <View style={styles.logo}>
+          <Image source={require("./imdb.png")} resizeMode="cover" />
         </View>
       </View>
 
@@ -36,7 +43,7 @@ const MovieCard = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.ACTIVE,
     height: 340,
     width: 230,
     borderRadius: 15,
@@ -62,6 +69,10 @@ const styles = StyleSheet.create({
   rowAndCenter: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  logo: {
+    width: 200,
+    height: 200,
   },
 });
 export default MovieCard;
