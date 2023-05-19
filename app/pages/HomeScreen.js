@@ -6,11 +6,19 @@ import GenreCard from "../components/GenreCard";
 import ItemSeparator from "../components/ItemSeparator";
 import MovieCard from "../components/MovieCard";
 import ButtonTab from "../components/ButtonTab";
+import { getMovieNowPlaying } from "../services/MovieService";
 const Genres = ["All", "Action", "Comedy", "Romance", "Horror", "Sci-Fi"];
 
 const HomeScreen = () => {
   const [activeGenre, setactivGenre] = useState("All");
 
+  const [nowPlayingMovie, setnowPlayingMovies] = useState({});
+
+  useEffect(() => {
+    getMovieNowPlaying().then((movieresponse) =>
+      setnowPlayingMovies(movieresponse.data)
+    );
+  }, []);
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <StatusBar
@@ -45,28 +53,25 @@ const HomeScreen = () => {
 
       <View>
         <FlatList
-          data={Genres}
+          data={nowPlayingMovie.results}
           horizontal
           showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item.id.toString()}
           ItemSeparatorComponent={() => <ItemSeparator width={25} />}
           ListHeaderComponent={() => <ItemSeparator width={25} />}
           ListFooterComponentStyle={() => <ItemSeparator width={25} />}
-          renderItem={({ item }) => <MovieCard />}
+          renderItem={({ item }) => (
+            <MovieCard
+              title={item.title}
+              original={item.original_title}
+              language={item.original_language}
+              voteCount={item.vote_count}
+              poster={item.poster_path}
+              voteAverage={item.vote_average}
+            />
+          )}
         />
       </View>
-      {/*    <View>
-        <FlatList
-          data={Genres}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item}
-          ItemSeparatorComponent={() => <ItemSeparator width={25} />}
-          ListHeaderComponent={() => <ItemSeparator width={25} />}
-          ListFooterComponentStyle={() => <ItemSeparator width={25} />}
-          renderItem={({ item }) => <ButtonTab />}
-        />
-      </View> */}
     </ScrollView>
   );
 };

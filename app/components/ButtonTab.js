@@ -1,7 +1,5 @@
 import React from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import HomeScreen from "../pages/HomeScreen";
-import MovieScreen from "../pages/MovieScreen";
 
 const Tab = createMaterialBottomTabNavigator();
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,25 +6,48 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
+  TouchableNativeFeedback,
 } from "react-native";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import IMAGES from "../constants/Images";
 
-const MovieCard = () => {
+const MovieCard = ({
+  title,
+  poster,
+  voteCount,
+  release,
+  language,
+  voteAverage,
+}) => {
+  const [liked, setLiked] = useState(false);
+
   return (
     <TouchableOpacity>
       <View style={styles.container}>
         <View style={styles.logo}>
-          <Image source={require("./imdb.png")} resizeMode="cover" />
+          <Image
+            source={IMAGES.TMDB}
+            resizeMode="cover"
+            style={{ width: 25, height: 25 }}
+          />
+          <Text style={styles.tmdbRating}>{voteAverage}</Text>
         </View>
+        <TouchableNativeFeedback onPress={() => setLiked(!liked)}>
+          <Ionicons
+            name={liked ? "heart" : "heart-outline"}
+            size={25}
+            color={liked ? Colors.HEART : Colors.WHITE}
+            style={{ position: "absolute", bottom: 10, left: 10 }}
+          />
+        </TouchableNativeFeedback>
       </View>
 
       <View style={styles.movieTitle} numberOfLines={3}>
-        <Text>Uri - Surgical Strike Uri</Text>
+        <Text>{title}</Text>
 
         <View style={styles.movieSubTitleContainer}>
-          <Text> Hindi | U/A</Text>
+          <Text> {language}</Text>
 
           <View style={styles.rowAndCenter}>
             <Ionicons
@@ -33,7 +56,7 @@ const MovieCard = () => {
               color={Colors.HEART}
               style={{ marginRight: 5 }}
             />
-            <Text>90%</Text>
+            <Text>92%</Text>
           </View>
         </View>
       </View>
@@ -49,7 +72,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     elevation: 7,
     marginVertical: 4,
-    alignItems: "center",
   },
 
   movieTitle: {
@@ -71,8 +93,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logo: {
-    width: 200,
-    height: 200,
+    flexDirection: "row",
+    paddingVertical: 8,
+    alignContent: "flex-end",
+    paddingLeft: 150,
+  },
+  tmdbRating: {
+    fontSize: 12,
+    color: Colors.YELLOW,
+    paddingHorizontal: 5,
+  },
+  tmdbHeart: {
+    flexDirection: "column",
   },
 });
 export default MovieCard;
