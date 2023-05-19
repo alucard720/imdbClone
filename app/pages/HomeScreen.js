@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import Colors from "../../constants/Colors";
+import Colors from "../constants/Colors";
 import GenreCard from "../components/GenreCard";
 import ItemSeparator from "../components/ItemSeparator";
 import MovieCard from "../components/MovieCard";
-
+import ButtonTab from "../components/ButtonTab";
 const Genres = ["All", "Action", "Comedy", "Romance", "Horror", "Sci-Fi"];
 
 const HomeScreen = () => {
@@ -43,8 +43,6 @@ const HomeScreen = () => {
         ></FlatList>
       </View>
 
-     
-
       <View>
         <FlatList
           data={Genres}
@@ -57,17 +55,21 @@ const HomeScreen = () => {
           renderItem={({ item }) => <MovieCard />}
         />
       </View>
-
-      
+      {/*    <View>
+        <FlatList
+          data={Genres}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item) => item}
+          ItemSeparatorComponent={() => <ItemSeparator width={25} />}
+          ListHeaderComponent={() => <ItemSeparator width={25} />}
+          ListFooterComponentStyle={() => <ItemSeparator width={25} />}
+          renderItem={({ item }) => <ButtonTab />}
+        />
+      </View> */}
     </ScrollView>
   );
 };
-
-
-
-
-
-
 
 const styles = StyleSheet.create({
   container: {

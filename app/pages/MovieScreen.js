@@ -6,14 +6,12 @@ const movies = ["recent movies"];
 const MovieScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.container}>
+      <View>
         <Text>Movie</Text>
       </View>
     </ScrollView>
   );
 };
-
-
 
 const styles = StyleSheet.create({
   container: {

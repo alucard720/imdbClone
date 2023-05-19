@@ -3,12 +3,13 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import IMAGES from "../constants/Images";
+
 const MovieCard = () => {
   return (
     <TouchableOpacity>
       <View style={styles.container}>
         <View>
-          <Image source={IMAGES.TMDB} />
+          <Image source={IMAGES.IMDB} resizeMode="cover" />
         </View>
       </View>
 
@@ -35,7 +36,7 @@ const MovieCard = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.ACTIVE,
+    backgroundColor: Colors.WHITE,
     height: 340,
     width: 230,
     borderRadius: 15,
