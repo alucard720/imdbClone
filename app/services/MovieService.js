@@ -1,19 +1,21 @@
 const axios = require("axios").default;
-
 import {
-  TMDB_DATABASE_URL,
-  TMDB_DATABASE_IMAGE,
+  TMDB_BASE_URL,
+  TMDB_IMAGE_BASE_URL,
   TMDB_API_KEY,
-  END_POINTS,
+  ENDPOINTS,
 } from "../constants/Urls";
 
 const TMDB_HTTP_REQUEST = axios.create({
-  baseURL: TMDB_DATABASE_URL,
-  params: { api_key: TMDB_API_KEY },
+  baseURL: TMDB_BASE_URL,
+  params: {
+    api_key: TMDB_API_KEY,
+  },
 });
 
-const getMovieNowPlaying = () => TMDB_HTTP_REQUEST.get(END_POINTS.NOW_PLAYING);
+const getNowMoviePlaying = () =>
+  TMDB_HTTP_REQUEST.get(ENDPOINTS.NOW_PLAYING_MOVIES);
 
-const getPoster = (path) => `${TMDB_DATABASE_IMAGE}/original${path}`;
+const getPoster = (path) => `${TMDB_IMAGE_BASE_URL}/original${path}`;
 
-export { getMovieNowPlaying, getPoster };
+export { getNowMoviePlaying, getPoster };

@@ -1,16 +1,11 @@
-const TMDB_DATABASE_URL = "https://api.themoviedb.org/3";
-const TMDB_DATABASE_IMAGE =
-  "https://api.themoviedb.org/3/collection/{collection_id}/images";
+const TMDB_BASE_URL = "https://api.themoviedb.org/3";
+const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p";
+
 const TMDB_API_KEY = "443bfa322b4a696a3a24da50e476b6f6";
 
-const END_POINTS = {
-  NOW_PLAYING: "/movie/now_playing",
-  MOST_POPULAR: "/movie/popular",
+const ENDPOINTS = {
+  NOW_PLAYING_MOVIES: "/movie/now_playing",
+  UPCOMING_MOVIES: "/movie/upcoming",
 };
 
-export default {
-  TMDB_DATABASE_URL,
-  TMDB_DATABASE_IMAGE,
-  TMDB_API_KEY,
-  END_POINTS,
-};
+export { TMDB_BASE_URL, TMDB_API_KEY, TMDB_IMAGE_BASE_URL, ENDPOINTS };

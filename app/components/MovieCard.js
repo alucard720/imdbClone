@@ -5,12 +5,13 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  ImageBackground,
   TouchableNativeFeedback,
+  ImageBackground,
 } from "react-native";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import IMAGES from "../constants/Images";
+import { getPoster } from "../services/MovieService";
 
 const MovieCard = ({
   title,
@@ -24,30 +25,34 @@ const MovieCard = ({
 
   return (
     <TouchableOpacity>
-      <View style={styles.container}>
-        <View style={styles.logo}>
-          <Image
-            source={IMAGES.TMDB}
-            resizeMode="cover"
-            style={{ width: 25, height: 25 }}
-          />
-          <Text style={styles.tmdbRating}>{voteAverage}</Text>
+      <ImageBackground
+        style={styles.container}
+        source={{ uri: getPoster(poster) }}
+      >
+        <View style={styles.container}>
+          <View style={styles.logo}>
+            <Image
+              source={IMAGES.TMDB}
+              resizeMode="cover"
+              style={{ width: 25, height: 25 }}
+            />
+            <Text style={styles.tmdbRating}>{voteAverage}</Text>
+          </View>
+          <TouchableNativeFeedback onPress={() => setLiked(!liked)}>
+            <Ionicons
+              name={liked ? "heart" : "heart-outline"}
+              size={25}
+              color={liked ? Colors.HEART : Colors.WHITE}
+              style={{ position: "absolute", bottom: 10, left: 10 }}
+            />
+          </TouchableNativeFeedback>
         </View>
-        <TouchableNativeFeedback onPress={() => setLiked(!liked)}>
-          <Ionicons
-            name={liked ? "heart" : "heart-outline"}
-            size={25}
-            color={liked ? Colors.HEART : Colors.WHITE}
-            style={{ position: "absolute", bottom: 10, left: 10 }}
-          />
-        </TouchableNativeFeedback>
-      </View>
-
+      </ImageBackground>
       <View style={styles.movieTitle} numberOfLines={3}>
         <Text>{title}</Text>
 
         <View style={styles.movieSubTitleContainer}>
-          <Text> {language}</Text>
+          <Text style={styles.movieSubTitle}>{language}</Text>
 
           <View style={styles.rowAndCenter}>
             <Ionicons
@@ -56,7 +61,7 @@ const MovieCard = ({
               color={Colors.HEART}
               style={{ marginRight: 5 }}
             />
-            <Text>92%</Text>
+            <Text>{voteCount}</Text>
           </View>
         </View>
       </View>
@@ -66,12 +71,11 @@ const MovieCard = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.ACTIVE,
     height: 340,
     width: 230,
-    borderRadius: 15,
-    elevation: 7,
-    marginVertical: 4,
+    borderRadius: 12,
+    elevation: 5,
+    marginVertical: 2,
   },
 
   movieTitle: {
@@ -96,15 +100,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingVertical: 8,
     alignContent: "flex-end",
-    paddingLeft: 150,
+    paddingLeft: 175,
   },
   tmdbRating: {
     fontSize: 12,
     color: Colors.YELLOW,
     paddingHorizontal: 5,
-  },
-  tmdbHeart: {
-    flexDirection: "column",
   },
 });
 export default MovieCard;

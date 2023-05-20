@@ -5,20 +5,21 @@ import Colors from "../constants/Colors";
 import GenreCard from "../components/GenreCard";
 import ItemSeparator from "../components/ItemSeparator";
 import MovieCard from "../components/MovieCard";
-import ButtonTab from "../components/ButtonTab";
-import { getMovieNowPlaying } from "../services/MovieService";
+import { getNowMoviePlaying } from "../services/MovieService";
+
 const Genres = ["All", "Action", "Comedy", "Romance", "Horror", "Sci-Fi"];
 
 const HomeScreen = () => {
   const [activeGenre, setactivGenre] = useState("All");
-
-  const [nowPlayingMovie, setnowPlayingMovies] = useState({});
+  const [nowPlayingMovie, setNowPlayingMovie] = useState({});
+  const [poster, setPoster] = useState({});
 
   useEffect(() => {
-    getMovieNowPlaying().then((movieresponse) =>
-      setnowPlayingMovies(movieresponse.data)
+    getNowMoviePlaying().then((movieResponse) =>
+      setNowPlayingMovie(movieResponse.data)
     );
   }, []);
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <StatusBar
@@ -63,11 +64,10 @@ const HomeScreen = () => {
           renderItem={({ item }) => (
             <MovieCard
               title={item.title}
-              original={item.original_title}
               language={item.original_language}
               voteCount={item.vote_count}
-              poster={item.poster_path}
               voteAverage={item.vote_average}
+              poster={item.poster_path}
             />
           )}
         />
