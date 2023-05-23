@@ -5,23 +5,28 @@ import Colors from "../constants/Colors";
 import GenreCard from "../components/GenreCard";
 import ItemSeparator from "../components/ItemSeparator";
 import MovieCard from "../components/MovieCard";
-import { getNowMoviePlaying } from "../services/MovieService";
+import { getNowMoviePlaying, getMostPopular } from "../services/MovieService";
 
+//comienzo de herramienta.
 const Genres = ["All", "Action", "Comedy", "Romance", "Horror", "Sci-Fi"];
 
 const HomeScreen = () => {
   const [activeGenre, setactivGenre] = useState("All");
   const [nowPlayingMovie, setNowPlayingMovie] = useState({});
-  const [poster, setPoster] = useState({});
+  const [mostpopular, setMostPopular] = useState({});
 
   useEffect(() => {
     getNowMoviePlaying().then((movieResponse) =>
       setNowPlayingMovie(movieResponse.data)
     );
+
+    getMostPopular().then((movieResponse) =>
+      setMostPopular(movieResponse.data)
+    );
   }, []);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView style={styles.container}>
       <StatusBar
         style="auto"
         backgroundColor={Colors.BASIC_BACKGROUND}
@@ -29,7 +34,7 @@ const HomeScreen = () => {
       />
 
       <View style={styles.headerContainer}>
-        <Text style={styles.headerTitle}> Now Playing</Text>
+        <Text style={styles.headerTitle}> Now Playing </Text>
         <Text style={styles.headerSubTitle}> View All</Text>
       </View>
 
@@ -71,6 +76,35 @@ const HomeScreen = () => {
             />
           )}
         />
+      </View>
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerTitle}> Top Rated </Text>
+        <Text style={styles.headerSubTitle}> View All</Text>
+      </View>
+
+      <View>
+        <FlatList
+          data={mostpopular.results}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item) => item.id.toString()}
+          ItemSeparatorComponent={() => <ItemSeparator width={25} />}
+          ListHeaderComponent={() => <ItemSeparator width={25} />}
+          ListFooterComponentStyle={() => <ItemSeparator width={25} />}
+          renderItem={({ item }) => (
+            <MovieCard
+              title={item.title}
+              language={item.original_language}
+              voteCount={item.vote_count}
+              voteAverage={item.vote_average}
+              poster={item.poster_path}
+            />
+          )}
+        />
+      </View>
+
+      <View>
+        <Text> ButtonTab</Text>
       </View>
     </ScrollView>
   );
