@@ -13,8 +13,7 @@ const Genres = ["All", "Action", "Comedy", "Romance", "Horror", "Sci-Fi"];
 const HomeScreen = () => {
   const [activeGenre, setactivGenre] = useState("All");
   const [nowPlayingMovie, setNowPlayingMovie] = useState({});
-  const [poster, setPoster] = useState({});
-
+  const [mostpopular, setMostPopular] = useState({});
   useEffect(() => {
     getNowMoviePlaying().then((movieResponse) =>
       setNowPlayingMovie(movieResponse.data)
