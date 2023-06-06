@@ -101,10 +101,6 @@ const HomeScreen = () => {
           )}
         />
       </View>
-
-      <View>
-        <Text> ButtonTab</Text>
-      </View>
     </ScrollView>
   );
 };
