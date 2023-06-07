@@ -5,11 +5,7 @@ import { useEffect } from "react";
 import getNews from "../services/NewsfeedService";
 import NewsFeedCard from "../components/NewsFeedCard";
 const Feed = () => {
-  const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    getNews();
-  });
 
   return (
     <View style={styles.container}>

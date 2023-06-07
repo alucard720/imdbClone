@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from "./app/pages/HomeScreen";
 import Feed from "./app/pages/Feed";
-import Messages from "./app/pages/messages";
+import Message from "./app/pages/Message";
 import Settings from "./app/pages/settings";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,9 +26,9 @@ const App = () => {
             let iconName;
             if (route.name === "Home") {
               iconName = "home";
-            } else if (route.name === "Feed") {
+            } else if (route.name === "Entertaiment News") {
               iconName = "earth-outline";
-            } else if (route.name === "Messages") {
+            } else if (route.name === "Message") {
               iconName = "chatbox";
             } else {
               iconName = "settings";
@@ -44,8 +44,8 @@ const App = () => {
           component={Home}
           options={{ headerShown: false }}
         />
-        <Tab.Screen name="News" component={Feed} />
-        <Tab.Screen name="Messages" component={Messages} />
+        <Tab.Screen name="Entertaiment News" component={Feed} />
+        <Tab.Screen name="Messages" component={Message} />
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>
     </NavigationContainer>
